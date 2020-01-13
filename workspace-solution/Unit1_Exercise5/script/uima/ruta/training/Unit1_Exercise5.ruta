@@ -1,0 +1,42 @@
+PACKAGE uima.ruta.training;
+
+DECLARE Animal;
+WORDLIST AnimalList = 'animals.txt';
+MARKFAST(Animal, AnimalList, true);
+
+DECLARE Employer, Employee;
+"Peter"-> Employee;
+"Frank"-> Employer;
+
+DECLARE EmplRelation (Annotation employee, Annotation employer);
+
+(a:Employee # b:Employer)
+    {-> EmplRelation, EmplRelation.employee = a,  EmplRelation.employer = b};
+
+DECLARE Sentence;
+((# PERIOD){-> Sentence})+;
+
+DECLARE MoneyAmount (INT amount, STRING currency);
+INT am;
+STRING cu;
+NUM{PARSE(am)} SPECIAL
+    {-> MATCHEDTEXT(cu), CREATE(MoneyAmount, 1, 2, "amount" = am, "currency" = cu)};
+
+    
+    
+DECLARE A1, A2, A3, A4, A5;
+
+BLOCK(eachSentence) Sentence{}{
+    (ANY ANY){-> A1};
+}
+
+Sentence->{(ANY ANY){-> A2};};
+
+Sentence{-> A3}<-{EmplRelation.employee.ct=="Peter";};
+
+Sentence{-> A4} Sentence<-{MoneyAmount.currency=="€";};
+
+FOREACH(w) W{}{
+    w{-> A5} SW;
+    SW w{-PARTOF(A5)-> A5};
+}

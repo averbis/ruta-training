@@ -1,0 +1,4 @@
+PACKAGE uima.ruta.training;
+
+SCRIPT uima.ruta.training.Unit1_Exercise5;
+CALL(Unit1_Exercise5);

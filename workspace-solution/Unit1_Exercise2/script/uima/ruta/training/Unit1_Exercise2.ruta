@@ -1,0 +1,24 @@
+PACKAGE uima.ruta.training;
+
+DECLARE Animal;
+WORDLIST AnimalList = 'animals.txt';
+MARKFAST(Animal, AnimalList, true);
+
+
+DECLARE AnimalEnum;
+(Animal{-PARTOF(AnimalEnum)} (COMMA Animal)* "and" Animal){-> AnimalEnum};
+//(Animal{-PARTOF(AnimalEnum)} (ANY{OR(IS(COMMA), REGEXP("and"))} Animal)+){-> AnimalEnum};
+//Animal (ANY{OR(IS(COMMA), REGEXP("and"))} Animal)+{-> MARKONCE(AnimalEnum,1,2)};
+//((COMMA? @Animal{-PARTOF(AnimalEnum)})+ "and" Animal){-> AnimalEnum};
+
+DECLARE Sentence;
+
+(ANY+? PERIOD){-PARTOF(Sentence) -> Sentence};
+
+((# PERIOD){-> Sentence})+;
+
+DECLARE Day, Month, Year, Date;
+
+NUM{REGEXP("..")-> Day} PERIOD 
+    NUM{REGEXP("..")-> Month} PERIOD 
+    NUM{REGEXP("....")-> Year, MARK(Date, 1, 5)};

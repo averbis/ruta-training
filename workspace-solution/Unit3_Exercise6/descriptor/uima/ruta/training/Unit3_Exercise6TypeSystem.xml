@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+    <name>uima.ruta.training.Unit3_Exercise6TypeSystem</name>
+    <imports>
+        <import location="../../../BasicTypeSystem.xml"/>
+        <import location="../../../utils/HtmlTypeSystem.xml"/>
+        <import location="../../../utils/SourceDocumentInformation.xml"/>
+    </imports>
+    <types>
+        <typeDescription>
+            <name>uima.ruta.training.Unit3_Exercise6.SystemOrganClassMention</name>
+            <description>Type defined in uima.ruta.training.Unit3_Exercise6</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+    </types>
+</typeSystemDescription>

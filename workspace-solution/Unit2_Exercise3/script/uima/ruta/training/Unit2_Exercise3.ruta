@@ -1,0 +1,57 @@
+PACKAGE uima.ruta.training;
+
+ENGINE utils.PlainTextAnnotator;
+TYPESYSTEM Utils.PlainTextTypeSystem;
+
+EXEC(PlainTextAnnotator, {Line, EmptyLine});
+DECLARE FreeLine, LineFree;
+RETAINTYPE(WS);
+EmptyLine Line{-> FreeLine};
+Line{-> LineFree} BREAK[1,2] @EmptyLine;
+Line{-> TRIM(WS)};
+FreeLine{-> TRIM(WS)};
+LineFree{-> TRIM(WS)};
+RETAINTYPE;
+
+DECLARE Headline, Content, HeadlineCandidate;
+DECLARE Section (Headline headline, Content content);
+
+BLOCK(eachLine) Line {} {
+    Document{STARTSWITH(CAP), ENDSWITH(CAP) -> HeadlineCandidate};
+    Document{->HeadlineCandidate}<-{NUM{STARTSWITH(Line)} W+;};
+
+}
+
+DECLARE OverallFirst;
+MARKFIRST(OverallFirst);
+
+HeadlineCandidate{CONTAINS(SPECIAL,2,100) -> UNMARK(HeadlineCandidate)};
+HeadlineCandidate{CONTAINS(NUM,2,100) -> UNMARK(HeadlineCandidate)};
+HeadlineCandidate{ENDSWITH(PM), -ENDSWITH(COLON) -> UNMARK(HeadlineCandidate)};
+
+BLOCK(eachLine) HeadlineCandidate {} {
+    Document{-PARTOF(Headline), CONTAINS(CAP,100,100,true)-> Headline};
+    Document{IS(FreeLine), IS(LineFree) -> Headline};
+    Document{STARTSWITH(OverallFirst), IS(LineFree) -> Headline};
+}
+
+BOOLEAN hlNum;
+
+BLOCK(failedYet) Document{-CONTAINS(Headline)} {
+    HeadlineCandidate{REGEXP("\\d\\s*Introduction") -> hlNum = true};
+    BLOCK(failedYet) Document{hlNum} {
+        HeadlineCandidate{-STARTSWITH(NUM) -> UNMARK(HeadlineCandidate)};
+        HeadlineCandidate{-> Headline};
+    }
+}
+
+
+(Headline #{-> Content})
+    {-> CREATE(Section,
+        "headline" = Headline, 
+        "content" = Content)} Headline;
+
+(Headline{-PARTOF(Section)} #{-> Content})
+	{-> CREATE(Section,
+	    "headline" = Headline, 
+	    "content" = Content)};

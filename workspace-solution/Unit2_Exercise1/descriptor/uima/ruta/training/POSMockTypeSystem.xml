@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+    <name>uima.ruta.training.POSMockTypeSystem</name>
+    <imports>
+        <import location="../../../BasicTypeSystem.xml"/>
+    </imports>
+    <types>
+        <typeDescription>
+            <name>uima.ruta.training.POSMock.V</name>
+            <description>Type defined in uima.ruta.training.POSMock</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.POSMock.PRPS</name>
+            <description>Type defined in uima.ruta.training.POSMock</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.POSMock.IN</name>
+            <description>Type defined in uima.ruta.training.POSMock</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.POSMock.DT</name>
+            <description>Type defined in uima.ruta.training.POSMock</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.POSMock.JJ</name>
+            <description>Type defined in uima.ruta.training.POSMock</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.POSMock.NN</name>
+            <description>Type defined in uima.ruta.training.POSMock</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.POSMock.CC</name>
+            <description>Type defined in uima.ruta.training.POSMock</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.POSMock.PUNCT</name>
+            <description>Type defined in uima.ruta.training.POSMock</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.POSMock.PRP</name>
+            <description>Type defined in uima.ruta.training.POSMock</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+    </types>
+</typeSystemDescription>

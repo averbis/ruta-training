@@ -1,0 +1,16 @@
+101;101
+2.3;2.3
+3,000;3000
+3^2;9
+3.3e3;3300
+1/4;0.25
+9^1/2;3
+4x10^3;4000
+5.5*4^5;5632
+thirty one;31
+three hundred;300
+four thousand one hundred and two;4102
+3 million;3000000
+fünfundzwanzig;25
+½ million;500000
+4²;16

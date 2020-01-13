@@ -1,0 +1,749 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Apache UIMA Ruta&#8482; Exercises</title><link rel="stylesheet" type="text/css" href="css/stylesheet-html.css"><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div lang="en" class="book" title="Apache UIMA Ruta&#8482; Exercises" id="d5e1"><div xmlns:d="http://docbook.org/ns/docbook" class="titlepage"><div><div><h1 class="title">Apache UIMA Ruta&#8482; Exercises</h1></div><div><div class="authorgroup">
+      <h3 class="corpauthor">Averbis GmbH</h3>
+    </div></div><div><p class="releaseinfo">Version 2.6.1</p></div><div><p class="copyright">Copyright &copy; 2018 Averbis GmbH</p></div><div><p class="pubdate">Januar, 2018</p></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="preface"><a href="#d5e13">Introduction</a></span></dt><dt><span class="chapter"><a href="#ruta.training.unit1">Unit I: Language Elements</a></span></dt><dt><span class="chapter"><a href="#ruta.training.unit2">Unit II: Specific Tasks</a></span></dt><dt><span class="chapter"><a href="#ruta.training.unit3">Unit III: Projects, Workbench, Components and Parameters</a></span></dt><dt><span class="chapter"><a href="#ruta.training.unit4">Unit IV: Segmentation of References</a></span></dt><dt><span class="chapter"><a href="#ruta.training.unit5">Unit V: Endpoints in Clinical Trials</a></span></dt></dl></div>
+  
+  
+    
+  
+  
+  <div class="preface" title="Introduction" id="d5e13"><div class="titlepage"><div><div><h2 class="title">Introduction</h2></div></div></div>
+  
+  <div class="section" title="About the Exercises"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="d5e15">About the Exercises</h2></div></div></div>
+  
+  <div class="itemizedlist"><ul class="itemizedlist" type="bullet"><li class="listitem" style="list-style-type: disc">
+        <p>
+          The exercises are grouped into unit with increasing degree of complexity. The reader 
+          is encouraged to practise in the order they are given in this document with one exception.
+          The <span class="strong"><strong>exercises 1-3 of Unit III</strong></span> about the UIMA Ruta Workbench should be preponed if the 
+          reader is not yet familiar with the usage of the tooling.
+        </p>
+      </li><li class="listitem" style="list-style-type: disc">
+        <p>
+          Some exercises of this document require a certain degree of familiarity and prior 
+          knowledge about UIMA, regular expressions, Eclipse and Maven. While several exercises 
+          link to important information about UIMA Ruta, missing knowledge about other technologies
+          needs to be researched by the reader.
+        </p>
+      </li></ul></div>
+  </div>
+  
+  <div class="section" title="Sources of Information for UIMA Ruta (increasing degree of detail)"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="d5e23">Sources of Information for UIMA Ruta (increasing degree of detail)</h2></div></div></div>
+    
+    <div class="itemizedlist"><ul class="itemizedlist" type="bullet"><li class="listitem" style="list-style-type: disc">
+        <p>
+          The UIMA Ruta
+          <a class="ulink" href="https://uima.apache.org/ruta.html" target="_top">homepage</a>
+          provides an overview of the system and links to additional sources of information.
+        </p>
+      </li><li class="listitem" style="list-style-type: disc">
+        <p>
+          The Section
+          <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#ugr.tools.ruta.overview.coreconcepts" target="_top">Core Concepts</a>
+          in the documentation contains a concise summary of the main ideas.
+        </p>
+      </li><li class="listitem" style="list-style-type: disc">
+        <p>
+          The Section
+          <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#section.ugr.tools.ruta.workbench.install" target="_top">Installation</a>
+          provides information how to install the UIMA Ruta Workbench.
+          Screencasts are available for
+          <a class="ulink" href="https://www.youtube.com/watch?v=1puP_TkcmRk" target="_top">installing Eclipse</a>
+          and for
+          <a class="ulink" href="https://www.youtube.com/watch?v=iy3-CRN-4TA" target="_top">installing the UIMA Ruta Workbench</a>
+          .
+        </p>
+      </li><li class="listitem" style="list-style-type: disc">
+        <p>
+          The
+          <a class="ulink" href="https://uima.apache.org/downloads/gscl2013/2013-GSCL-Ruta.pdf" target="_top">tutorial slides</a>
+          of the GSCL 2013 provide an overview of the language and tooling (UIMA Ruta 2.2.1).
+        </p>
+      </li><li class="listitem" style="list-style-type: disc">
+        <p>
+          The main article about
+          <a class="ulink" href="http://ki.informatik.uni-wuerzburg.de/~pkluegl/publications/2014-NLE-Ruta.pdf" target="_top">UIMA Ruta</a>
+          provides a 30-page summary.
+        </p>
+      </li><li class="listitem" style="list-style-type: disc">
+        <p>
+          Finally, the
+          <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html" target="_top">documentation</a>
+          contains the reference of the language, components and workbench.
+        </p>
+      </li></ul></div>
+  </div>
+
+</div>
+  <div class="chapter" title="Unit I: Language Elements" id="ruta.training.unit1"><div class="titlepage"><div><div><h2 class="title">Unit I: Language Elements</h2></div></div></div>
+  
+  <p>
+    This unit provides some basic exercises for the UIMA Ruta rule language introducing its
+    language elements.
+    It is not intended to serve as a documentation or tutorial. The reader should
+    be familiar with the
+    following Sections from the documentation:
+  </p>
+  <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+      <p>
+        <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#ugr.tools.ruta.overview.coreconcepts" target="_top">Core Concepts</a>
+      </p>
+    </li><li class="listitem">
+      <p>
+        <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#ugr.tools.ruta.overview.examples" target="_top">Learning by Example</a>
+      </p>
+    </li><li class="listitem">
+      <p>
+        <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#ugr.tools.ruta.language.syntax" target="_top">Syntax</a>
+      </p>
+    </li><li class="listitem">
+      <p>
+        <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#ugr.tools.ruta.language.anchoring" target="_top">Rule elements and their matching order</a>
+      </p>
+    </li><li class="listitem">
+      <p>
+        <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#ugr.tools.ruta.language.seeding" target="_top">Basic annotations and tokens</a>
+      </p>
+    </li><li class="listitem">
+      <p>
+        <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#ugr.tools.ruta.language.filtering" target="_top">Robust extraction using filtering</a>
+      </p>
+    </li></ul></div>
+
+  <p>
+    Other Sections of the documentation can be used as a reference if specific information about
+    certain language elements is needed.
+  </p>
+
+  <p>
+    The workspace provides a project for each exercise of this unit. These project should be
+    utilized to
+    create the solution for the exercises since they contain additional material, e.g.,
+    the input documents.
+  </p>
+
+  <div class="section" title="Exercise 1: Basic Annotations"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="ruta.training.unit1.exercise1">Exercise 1: Basic Annotations</h2></div></div></div>
+    
+    <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+        <p>
+          Declare a new annotation type "Animal".
+        </p>
+      </li><li class="listitem">
+        <p>
+          Annotate an occurrence of an animal by checking the covered text of an annotation.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Annotate an occurrence of an animal by using a wordlist.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Annotate an occurrence of an animal with a simple regexp rule.
+        </p>
+      </li></ul></div>
+
+  </div>
+
+  <div class="section" title="Exercise 2: Sequential Patterns"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="ruta.training.unit1.exercise2">Exercise 2: Sequential Patterns</h2></div></div></div>
+    
+    <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+        <p>
+          Declare a new annotation type "AnimalEnum".
+        </p>
+      </li><li class="listitem">
+        <p>
+          Annotate enumerations of animals using a composed rule elements and the quantifier
+          "+" or "*".
+        </p>
+      </li><li class="listitem">
+        <p>
+          Declare a new annotation type "Sentence".
+        </p>
+      </li><li class="listitem">
+        <p>
+          Create a "Sentence" annotation for each sentence in the input document. The last line may be ignored.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Create a "Sentence" annotation for each sentence in the input document with only a
+          single rule using a wildcard. The last line may be ignored.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Declare four new annotation types: "Day", "Month", "Year" and "Date".
+        </p>
+      </li><li class="listitem">
+        <p>
+          Create a single rule for detecting dates of the form "DD.MM.YYYY". This single rule
+          must create four annotations.
+          A "Date" annotation for the complete date mention.
+          A "Day"
+          annotation for the two digits of the
+          day.
+          A "Month" annotation for the two digits of the
+          month.
+          A "Year" annotation for the four
+          digits of the year.
+        </p>
+      </li></ul></div>
+  </div>
+
+  <div class="section" title="Exercise 3: Complex Annotations"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="ruta.training.unit1.exercise3">Exercise 3: Complex Annotations</h2></div></div></div>
+    
+    <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+        <p>
+          Declare a new annotation type "EmplRelation" with the two features "employee" and
+          "employer" of the type annotation.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Create an "EmplRelation" annotation and fill the features using the CREATE action.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Create an "EmplRelation" annotation and fill the features using the GATHER action.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Create an "EmplRelation" annotation and fill the features only using implicit actions.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Create an "EmplRelation" annotation and fill the features using annotation
+          variables.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Create an "EmplRelation" annotation and fill the features using labels for the rule
+          elements.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Declare a new annotation type "MoneyAmount" with an INT feature "amount" and an STRING
+          feature "currency".
+        </p>
+      </li><li class="listitem">
+        <p>
+          Create annotations for mentions of amounts of money and fill the features with correct
+          values.
+        </p>
+      </li></ul></div>
+  </div>
+
+  <div class="section" title="Exercise 4: Conditions and Actions"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="ruta.training.unit1.exercise4">Exercise 4: Conditions and Actions</h2></div></div></div>
+    
+    <p>The project of this exercise already contains some rules for creating annotations, which
+      can be utilized in the following.
+    </p>
+    <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+        <p>
+          Annotate all sentences that contain a number or a comma.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Annotate all sentences that contain at least two capitalized words.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Annotate all sentences that start with an animal.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Remove all sentences that contain an animal.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Remove all amounts of money whose amount is less than 50.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Remove all amounts of money whose currency is dollar.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Expand the "EmplRelation"" annotation to the complete document.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Trim the sentences by punctuation marks.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Split the sentences by the word "are".
+        </p>
+      </li></ul></div>
+  </div>
+
+  <div class="section" title="Exercise 5: Advanced Structures"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="ruta.training.unit1.exercise5">Exercise 5: Advanced Structures</h2></div></div></div>
+    
+    <p>The project of this exercise already contains some rules for creating annotations, which
+      can be utilized in the following.
+    </p>
+    <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+        <p>
+          Annotate all pairs of tokens within sentences (not across sentences) using a BLOCK
+          construct.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Annotate all pairs of tokens within sentences (not across sentences) using an in lined
+          rule.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Annotate all sentences that contain an EmplRelation with an employee named "Peter".
+        </p>
+      </li><li class="listitem">
+        <p>
+          Annotate all sentences that are followed by a sentence that contains an MoneyAmount in
+          Euro.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Create a new script, import and call the existing script.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Create a new script, import and call only the BLOCK construct of the existing
+          script.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Create a new script, import the existing script and apply it only on
+          capitalized words.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Annotate each word that is either followed or preceded by a small-written word using a FOREACH block.
+        </p>
+      </li></ul></div>
+  </div>
+
+  <div class="section" title="Exercise 6: Visibility"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="ruta.training.unit1.exercise6">Exercise 6: Visibility</h2></div></div></div>
+    
+    <p>The project of this exercise already contains some rule for creating annotations, which
+      can be utilized in the following.
+    </p>
+    <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+        <p>
+          The PlainTextAnnotator created Line annotations. Try to create a sentence annotation
+          for each Line annotation, then recap the visibility feature of UIMA Ruta.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Change the filtering setting so that Sentence annotations are created for all Lines.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Make capitalized words invisible and annotate all matchable sentences.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Create an annotation covering the text passage "Peter works for Frank. 10&#8364;" with the rule
+          "(CW NUM SPECIAL){-&gt; Type};"
+        </p>
+      </li></ul></div>
+  </div>
+
+  <div class="section" title="Exercise 7: Advanced Concepts"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="ruta.training.unit1.exercise7">Exercise 7: Advanced Concepts</h2></div></div></div>
+    
+    <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+        <p>
+          Import TypeSystem1.xml and TypeSystem2.xml with aliasing.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Annotate the three tokens before a number with type "Type" from typesystem TypeSystem1.xml
+        </p>
+      </li><li class="listitem">
+        <p>
+          Annotate the next period before a number with type "Type" from typesystem TypeSystem2.xml
+        </p>
+      </li><li class="listitem">
+        <p>
+          Optimize the execution efficiency of the previous rules by using an anchor "@".
+        </p>
+      </li></ul></div>
+  </div>
+</div>
+  <div class="chapter" title="Unit II: Specific Tasks" id="ruta.training.unit2"><div class="titlepage"><div><div><h2 class="title">Unit II: Specific Tasks</h2></div></div></div>
+  
+  <p>
+    The workspace provides a project for each exercise of this unit. These project should be utilized to 
+    create the solution for the exercises sine they contain additional material, e.g., the input documents.
+  </p>
+  
+  <div class="section" title="Exercise 1: Phrase Chunking"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="ruta.training.unit2.exercise1">Exercise 1: Phrase Chunking</h2></div></div></div>
+    
+    <p>
+      The goal of this exercise is the create a minimal chunker, a component that annotates noun, verb, and prepositional phrases.
+      Given a reduced set of Part-of-Speech annotations,
+      annotations of the types ChunkNP, ChunkVP and ChunkPP should be created. For simplicity reasons, the rule script of 
+      the project creates some mockup Part-of-Speech tags.
+    </p>
+  </div>
+  <div class="section" title="Exercise 2: Enumerations"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="ruta.training.unit2.exercise2">Exercise 2: Enumerations</h2></div></div></div>
+    
+    <p>
+      The goal of this exercise is to create a simple script for annotating enumerations. Declare a new annotation type "Enumeration" 
+      with one feature "elements" of the type "FSArray". Specify rules so that the annotations of the type "Enumeration"
+      cover the complete span of the enumeration in the examples while their features contain the single elements of the enumerations.
+      It is allowed to either integrate a Part-of-Speech tagger or simulate its integration like in the previous exercise..
+    </p>
+  </div>
+  <div class="section" title="Exercise 3: Sectioning"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="ruta.training.unit2.exercise3">Exercise 3: Sectioning</h2></div></div></div>
+    
+    <p>
+      The goal of this exercise if to create a simple rule script for segmenting documents by their headlines.
+      The resulting annotation named "Section"" should contain two features "headline" and "content". 
+      The "headline" feature should contain an annotation of the type "Headline", which specifies the headline of the section.
+      The "content" feature should contains an annotation of the type "Content", which specifies the content of the section. 
+      The offsets of the "Section" annotation should cover the headline as well as the content. Declare the required types 
+      and specify rules that process all input documents of the project as correct as possible. Subsections, listings, tables, figure, 
+      header and footers do not need to be considered, but may serve as a voluntary extra task.
+    </p>
+  </div>
+  <div class="section" title="Exercise 4: Numerical Values"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="ruta.training.unit2.exercise4">Exercise 4: Numerical Values</h2></div></div></div>
+    
+    <p>
+      The goal of this exercise is to create a script for detecting and normalizing numerical values like "1/4" or "thirty one".
+      Declare a new annotation type named "NumericValue" with a feature "value" of the type DOUBLE. 
+      The project contains an exemplary input document, which contains two numerical expressions in each line. 
+      The first one represents the text passage that should be annotated with "NumericalValue" and the second one represents the
+      value of feature "value". Try to annotate as many as possible with the correct feature value. 
+      The sections about 
+      <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#ugr.tools.ruta.language.expressions.number" target="_top">number expressions</a> 
+      ,
+      <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#ugr.tools.ruta.language.conditions.parse " target="_top">PARSE condition</a> 
+      and
+      <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#d5e2414" target="_top">word tables</a> 
+      may help in one or two examples. Another hint: the 
+      <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#ugr.tools.ruta.language.regexprule" target="_top">simple regexp rules</a> 
+      can be utilized to create annotations within tokens.
+    </p>
+  </div>
+    <div class="section" title="Exercise 3: Undesirable Effect Relations in Tables"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="ruta.training.unit2.exercise5">Exercise 3: Undesirable Effect Relations in Tables</h2></div></div></div>
+    
+    <p>
+      The goal of this exercise if to create a simple rule script for extracting undesirable effect information from tables.
+      Declare a new annotation type named "UndesirableEffect" with three features of the type Annotation. 
+      The first feature named "class" represents the symptom class of the undesirable effect.
+      The second feature named "effect" represents a actual effect of the relation.
+      The third feature named "frequency" represents the frequency of the undesirable effect.
+      The project contains some exemplary input documents. The first relation in example1.txt is: 
+      class: "Metabolism and nutrition disorders", effect: "diabetes mellitus", frequency: "very common".
+      The script in the project already includes the HtmlAnnotator, which creates annotations for rows (TR) and cells (TD).
+      Specify a set of rules as generic as possible that extract all undesirable effect relations.
+    </p>
+  </div>
+ 
+</div>
+  <div class="chapter" title="Unit III: Projects, Workbench, Components and Parameters" id="ruta.training.unit3"><div class="titlepage"><div><div><h2 class="title">Unit III: Projects, Workbench, Components and Parameters</h2></div></div></div>
+  
+
+  <p>
+    This unit contains exercises covering the creation of projects and usage of the tooling in
+    the Ruta Workbench.
+  </p>
+
+  <div class="section" title="Exercise 1: Ruta Project Basics"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="ruta.training.unit3.exercise1">Exercise 1: Ruta Project Basics</h2></div></div></div>
+    
+    <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+      <p>
+        Information about the Ruta Projects can be found in the
+        <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#section.ugr.tools.ruta.workbench.projects" target="_top">documentation</a>
+      </p>
+    </div>
+    <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+        <p>
+          Create a new Ruta Project named "MyFirstProject".
+        </p>
+      </li><li class="listitem">
+        <p>
+          Create a package in the script folder named "uima.ruta.training".
+        </p>
+      </li><li class="listitem">
+        <p>
+          Create a script file in the new package named "MyFirstScript".
+        </p>
+      </li><li class="listitem">
+        <p>
+          Declare some types and add some rules to the script and save the script file.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Investigate the files "MyFirstScriptEngine.xml" and "MyFirstScriptTypeSystem.xml" in
+          the descriptor folder "descriptor/uima/ruta/training/".
+        </p>
+      </li><li class="listitem">
+        <p>
+          Create a file named "text.txt" in the input folder and fill it with some text.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Select the script file and press the "Run" button (green circle with white triangle).
+        </p>
+      </li><li class="listitem">
+        <p>
+          Investigate the file "text.txt.xmi" in the output folder.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Investigate the launch configuration of your script (black triangle next to the run
+          button...Run Configurations).
+        </p>
+      </li></ol></div>
+  </div>
+
+  <div class="section" title="Exercise 2: Testing and Explanation"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="ruta.training.unit3.exercise2">Exercise 2: Testing and Explanation</h2></div></div></div>
+    
+    <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+      <p>
+        Information about the
+        <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#section.ugr.tools.ruta.workbench.testing" target="_top">Annotation Testing view</a>
+        and
+        <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#section.ugr.tools.ruta.workbench.explain_perspective" target="_top">Explanation Perspective</a>
+        can be found in the documentation.
+      </p>
+    </div>
+    <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+        <p>
+          Launch the annotation tests of "Main.ruta" in the project "Unit3_Exercise2" (focus
+          view Annotation Test while Main.ruta is opened in editor).
+        </p>
+      </li><li class="listitem">
+        <p>
+          Investigate the results in the views "True Positives", "False Positives", "False
+          Negatives",
+        </p>
+      </li><li class="listitem">
+        <p>
+          Launch Main.ruta in debug mode (button with bug left to run button) and investigate
+          files in output folder.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Use the Explanation perspective, especially the views "Applied Rules", "Matched
+          Rules", "Failed Rules", "Rule Elements", "Created By", "Annotation Browser" and "Selection
+          View" to identify the flawed rules and fix both tests (F1 = 1.0 for Main.ruta).
+        </p>
+      </li></ol></div>
+
+    
+    
+    
+  </div>
+
+  <div class="section" title="Exercise 3: Ruta Query View"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="ruta.training.unit3.exercise3">Exercise 3: Ruta Query View</h2></div></div></div>
+    
+    <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+      <p>
+        Information about the Ruta query view can be found in the
+        <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#section.ugr.tools.ruta.workbench.ruta_query" target="_top">documentation</a>
+      </p>
+    </div>
+
+    <p>
+      Use the Ruta Query view in the Workbench to find the following information in the first
+      part of the references data set (ruta-references/data/part1):
+    </p>
+    <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+        <p>
+          Find occurrences of the pattern: author followed by a date followed by a title (137
+          matches in 6 documents).
+        </p>
+      </li><li class="listitem">
+        <p>
+          Find all references that contain no author (6 matches in 4 documents).
+        </p>
+      </li><li class="listitem">
+        <p>
+          Find numbers with four digits that are not annotated with date (54 matches in 6
+          documents).
+        </p>
+      </li><li class="listitem">
+        <p>
+          Find all references that contain the word "Riloff" in the author annotation (4 matches
+          in 1 document).
+        </p>
+      </li></ol></div>
+    
+    
+    
+    
+  </div>
+
+
+  <div class="section" title="Exercise 4: Ruta in Maven Projects"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="ruta.training.unit3.exercise4">Exercise 4: Ruta in Maven Projects</h2></div></div></div>
+    
+    <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+      <p>
+        Information about the Ruta Maven Plugin can be found in the
+        <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#ugr.tools.ruta.maven" target="_top">documentation</a>
+        . The project ruta-clinical-trials is a maven-built project and can be used as an example.
+      </p>
+    </div>
+
+    <p>Create and configure a new maven project with following characteristics:</p>
+    <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+        <p>
+          The project contains two script files, whereas the first one imports and calls the
+          second one.
+        </p>
+      </li><li class="listitem">
+        <p>
+          The second script file uses a compiled wordlist for creating annotations for a newly
+          defined type.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Generated sources and resources are only located in the target folder.
+        </p>
+      </li><li class="listitem">
+        <p>
+          The problem view reports no errors.
+        </p>
+      </li><li class="listitem">
+        <p>
+          A unit test validates that the first script creates the correct annotations.
+        </p>
+      </li><li class="listitem">
+        <p>
+          All required sources and resources are included in the resulting jar artifact.
+        </p>
+      </li></ol></div>
+  </div>
+
+  <div class="section" title="Exercise 5: Configuration Parameter"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="ruta.training.unit3.exercise5">Exercise 5: Configuration Parameter</h2></div></div></div>
+    
+    <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+      <p>
+        Information about the configuration parameter of the UIMA Ruta analysis engine can be found
+        in the
+        <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#ugr.tools.ruta.ae.basic" target="_top">documentation</a>
+        .
+      </p>
+    </div>
+
+    <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+        <p>
+          Gain an overview of the configuration parameter and their functionality of the
+          RutaEngine analysis engine.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Modify the project of Exercise 5 so that the generated analysis engine descriptors use
+          the TextSeeder instead of the DefaultSeeder.
+        </p>
+      </li></ol></div>
+  </div>
+
+  <div class="section" title="Exercise 6: Additional Components"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="ruta.training.unit3.exercise6">Exercise 6: Additional Components</h2></div></div></div>
+    
+    <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+      <p>
+        Information about the
+        <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#ugr.tools.ruta.ae" target="_top">additional components</a>
+        of UIMA Ruta,
+        their usage for
+        <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#section.tools.ruta.howto.html" target="_top">converting html to plain text</a>
+        and for
+        <a class="ulink" href="https://uima.apache.org/d/ruta-current/tools.ruta.book.html#section.tools.ruta.howto.sorter" target="_top">sorting files</a>
+        are can be found in the
+        documentation.
+      </p>
+    </div>
+
+    <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+        <p>
+          Gain an overview of the additional components provided by UIMA Ruta.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Annotate HTML with annotations for the HTML elements and convert the annotated file to
+          plain text while retaining the annotations for the HTML elements.
+        </p>
+      </li><li class="listitem">
+        <p>
+          Use the additional components to sort xmi files by storing them in different folders.
+          Utilize the data folder of project ruta-references and separate reference section with the
+          pattern Author-Date-Title from reference sections with the pattern Author-Title...Date.
+        </p>
+      </li></ol></div>
+  </div>
+
+
+</div>
+  <div class="chapter" title="Unit IV: Segmentation of References" id="ruta.training.unit4"><div class="titlepage"><div><div><h2 class="title">Unit IV: Segmentation of References</h2></div></div></div>
+  
+  <p>
+    The goal of this unit is to develop a set of rules for segmenting scientific references
+    according to their
+    <a class="ulink" href="https://en.wikipedia.org/wiki/BibTeX#Field_types" target="_top">bibtex fields</a>
+    .
+    The rules have to create annotations of a reduced set of four different types: Author, Title,
+    Date
+    represent the main
+    information for distinguishing publications. Additionally, Venue
+    represents all remaining parts of the
+    reference like Booktitle or Volume. The annotation schema
+    is illustrated in the following using inlined xml elements for representing the corresponding
+    annotations:
+  </p>
+
+  <pre class="programlisting">&lt;author&gt;Katchalski-Katzir E, Shariv I, Eisenstein M, Friesem A, Aflalo C, 
+Vakser I:&lt;/author&gt; &lt;title&gt;Molecular surface recognition: determination 
+of geometric fit between proteins and their ligands by correlation 
+techniques.&lt;/title&gt; &lt;venue&gt;Proc Natl Acad Sci USA&lt;/venue&gt; &lt;date&gt;1992,
+&lt;/date&gt; &lt;venue&gt;89(6): 2195-2199.&lt;/venue&gt;</pre>
+
+  <p>
+    A preconfigured ruta project named ruta-references is included in the workspace and
+    may serve as a starting point. The project contains the type system, an empty script and the first two parts of an annotated data set.
+    Both parts can be used to develop the rules. A hidden third part will be applied for evaluating the resulting rules.
+    Furthermore, the comprehensibility, runtime performance and maintainability of the defined rules are of importance.
+    Only UIMA Ruta functionality may be utilized for solving this task, e.g., rules and wordlists. 
+    The usage of external components is not allowed. 
+  </p>
+</div>
+  <div class="chapter" title="Unit V: Endpoints in Clinical Trials" id="ruta.training.unit5"><div class="titlepage"><div><div><h2 class="title">Unit V: Endpoints in Clinical Trials</h2></div></div></div>
+  
+  <p>
+    The goal of this unit is to create an application for extracting endpoint information from
+    pubmed abstracts about clinical trials. Further information about clinical endpoints in general
+    can be found in the
+    <a class="ulink" href="https://en.wikipedia.org/wiki/Clinical_endpoint" target="_top">wikipedia article</a>
+    . The targeted endpoints are restricted three main types with different manifestations: overall
+    response rate (ORR), overall survival (OS) and progression free survival (PFS). The latter two
+    are further distinguished in the median value, the time interval and its rate. The following
+    table gives an overview over the annotations types that should be identified:
+  </p>
+
+  <div class="table"><a name="d5e314"></a><p class="title"><b>Table&nbsp;1.&nbsp;Information to extract in this unit.</b></p><div class="table-contents">
+    
+    <table summary="Information to extract in this unit." style="border-collapse: collapse;border-top: 0.5pt solid black; border-bottom: 0.5pt solid black; border-left: 0.5pt solid black; border-right: 0.5pt solid black; "><colgroup><col align="left" class="c1"><col align="left" class="c2"><col align="left" class="c3"></colgroup><thead><tr><th style="border-right: 0.5pt solid black; border-bottom: 0.5pt solid black; " align="left">Name</th><th style="border-right: 0.5pt solid black; border-bottom: 0.5pt solid black; " align="left">UIMA Type</th><th style="border-bottom: 0.5pt solid black; " align="left">Example (annotation given in brackets)</th></tr></thead><tbody><tr><td style="border-right: 0.5pt solid black; border-bottom: 0.5pt solid black; " align="left">ORR</td><td style="border-right: 0.5pt solid black; border-bottom: 0.5pt solid black; " align="left">org.apache.uima.trials.type.ORR</td><td style="border-bottom: 0.5pt solid black; " align="left">The overall response rate (ORR) was [60%].</td></tr><tr><td style="border-right: 0.5pt solid black; border-bottom: 0.5pt solid black; " align="left">median OS</td><td style="border-right: 0.5pt solid black; border-bottom: 0.5pt solid black; " align="left">org.apache.uima.trials.type.OSMean</td><td style="border-bottom: 0.5pt solid black; " align="left">... median OS was [12 months].</td></tr><tr><td style="border-right: 0.5pt solid black; border-bottom: 0.5pt solid black; " align="left">OS time span</td><td style="border-right: 0.5pt solid black; border-bottom: 0.5pt solid black; " align="left">org.apache.uima.trials.type.OSTime</td><td style="border-bottom: 0.5pt solid black; " align="left">The [one-year] survival rate was 55.8%.</td></tr><tr><td style="border-right: 0.5pt solid black; border-bottom: 0.5pt solid black; " align="left">OS rate</td><td style="border-right: 0.5pt solid black; border-bottom: 0.5pt solid black; " align="left">org.apache.uima.trials.type.OSRate</td><td style="border-bottom: 0.5pt solid black; " align="left">The one-year survival rate was [55.8%].</td></tr><tr><td style="border-right: 0.5pt solid black; border-bottom: 0.5pt solid black; " align="left">median PFS</td><td style="border-right: 0.5pt solid black; border-bottom: 0.5pt solid black; " align="left">org.apache.uima.trials.type.PFSMean</td><td style="border-bottom: 0.5pt solid black; " align="left">The median progression-free survival (PFS) was [10 months].</td></tr><tr><td style="border-right: 0.5pt solid black; border-bottom: 0.5pt solid black; " align="left">PFS time span</td><td style="border-right: 0.5pt solid black; border-bottom: 0.5pt solid black; " align="left">org.apache.uima.trials.type.PFSTime</td><td style="border-bottom: 0.5pt solid black; " align="left">[12-month] PFS was 14.8%.</td></tr><tr><td style="border-right: 0.5pt solid black; " align="left">PFS rate</td><td style="border-right: 0.5pt solid black; " align="left">org.apache.uima.trials.type.PFSRate</td><td style="" align="left">12-month PFS was [14.8%].</td></tr></tbody></table>
+  </div></div><br class="table-break">
+
+  <p>
+    In this unit, it is allowed to utilize external components if available in order to solve
+    the
+    task. Useful components could include amongst others: Tokenizer, Sentence Splitter, Stemmer,
+    Lemmatizer, POS Tagger, Chunker, Parser, Enumeration Detection, Numerical Value Annotator,
+    Physical Unit Annotator.
+  </p>
+
+  <p>
+    A preconfigured maven project named ruta-clinical-trials is included in the workspace and
+    may serve as a starting point.
+    The project contains the type system, an empty script and a set of 100 annotated abstracts. A simple
+    class named Evaluate
+    provides precision, recall and f1 score of the script applied on the given abstracts. No test data is
+    given. The goal is to
+    create an application that extracts the given annotations as good as possible. Furthermore, the
+    comprehensibility,
+    modular expandability (e.g., for other endpoints), runtime performance and maintainability of the defined
+    rules are of importance.
+  </p>
+</div>
+</div></body></html>

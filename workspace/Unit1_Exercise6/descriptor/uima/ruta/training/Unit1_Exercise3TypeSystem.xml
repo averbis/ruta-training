@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+    <name>uima.ruta.training.Unit1_Exercise3TypeSystem</name>
+    <imports>
+        <import location="../../../BasicTypeSystem.xml"/>
+    </imports>
+    <types>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise3.Employee</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise3</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise3.Employer</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise3</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+    </types>
+</typeSystemDescription>

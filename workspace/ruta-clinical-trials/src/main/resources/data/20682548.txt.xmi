@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><xmi:XMI xmlns:cas="http:///uima/cas.ecore" xmlns:xmi="http://www.omg.org/XMI" xmlns:type="http:///org/apache/uima/trials/type.ecore" xmlns:tcas="http:///uima/tcas.ecore" xmi:version="2.0">
+    <cas:NULL xmi:id="0"/>
+    <tcas:DocumentAnnotation xmi:id="1" sofa="6" begin="0" end="1427" language="x-unspecified"/>
+    <type:OSMean xmi:id="13" sofa="6" begin="641" end="644"/>
+    <type:OSMean xmi:id="17" sofa="6" begin="672" end="675"/>
+    <type:PFSMean xmi:id="21" sofa="6" begin="720" end="723"/>
+    <type:PFSMean xmi:id="25" sofa="6" begin="748" end="776"/>
+    <type:ORR xmi:id="29" sofa="6" begin="795" end="800"/>
+    <type:ORR xmi:id="33" sofa="6" begin="809" end="814"/>
+    <cas:Sofa xmi:id="6" sofaNum="1" sofaID="_InitialView" mimeType="text" sofaString="BACKGROUND: The second-line chemotherapeutic treatment for metastatic urothelial &#13;&#10;cancer (UC) after failure of cisplatin-based first-line therapy needs to be&#13;&#10;improved. Based on encouraging phase II data of gemcitabine and paclitaxel&#13;&#10;(Taxol) (GP), this trial was designed to compare a short-term (arm A) versus a&#13;&#10;prolonged (arm B) second-line combination chemotherapy of GP.&#13;&#10;PATIENTS AND METHODS: Of 102 randomized patients, 96 were eligible for analysis. &#13;&#10;Primary end point was overall survival (OS). Secondary end points were&#13;&#10;progression-free survival (PFS), objective response rates (ORR) and toxicity.&#13;&#10;RESULTS: Neither OS [arm A: 7.8 (95% CI: 4.2-11.4), arm B: 8.0 (95% CI: 4.9-11.1)&#13;&#10;months] and PFS [arm A: 4.0 (95% CI: 0-8.0), arm B: 3.1 (95% CI: 1.9-4.2) months]&#13;&#10;nor ORR (arm A: 37.5%, arm B: 41.5%) were significantly different. On prolonged&#13;&#10;treatment, more patients experienced severe anemia (arm A: 6.7% versus arm B:&#13;&#10;26.7% grade III/IV anemia; P = 0.011). In six patients, treatment was stopped&#13;&#10;during the first cycle due to disease progression or toxicity. Two patients died &#13;&#10;due to treatment-related toxic effects.&#13;&#10;CONCLUSION: Due to rapid tumor progression and toxicity at this dosage and&#13;&#10;schedule in a multicenter setting, it was not feasible to deliver a prolonged&#13;&#10;regimen. However, a high response rate of ~40% makes GP a promising second-line&#13;&#10;treatment option for patients with metastatic UC."/>
+    <cas:View sofa="6" members="1 13 17 21 25 29 33"/>
+</xmi:XMI>

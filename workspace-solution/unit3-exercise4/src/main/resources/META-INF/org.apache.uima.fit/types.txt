@@ -1,0 +1,1 @@
+classpath*:uima/ruta/training/FirstRutaTypeSystem.xml

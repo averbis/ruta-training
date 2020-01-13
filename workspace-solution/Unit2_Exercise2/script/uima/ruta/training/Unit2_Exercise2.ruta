@@ -1,0 +1,16 @@
+PACKAGE uima.ruta.training;
+
+DECLARE Enumeration (FSArray elements);
+
+DECLARE Conj, Chunk;
+W -> {
+    Document.ct == "and" {-> Conj};
+    Document.ct == "or" {-> Conj};
+};
+Conj{-> SHIFT(Conj, 1, 3)} SPECIAL Conj{-> UNMARK(Conj)};
+
+W+{-PARTOF({Conj,Chunk}) -> Chunk};
+
+(Chunk{-PARTOF(Enumeration)} 
+    (COMMA Chunk)* COMMA? Conj Chunk)
+    {-> CREATE(Enumeration, "elements" = Chunk)};

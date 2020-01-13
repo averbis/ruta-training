@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+    <name>uima.ruta.training.Unit2_Exercise1TypeSystem</name>
+    <imports>
+        <import location="../../../BasicTypeSystem.xml"/>
+        <import location="POSMockTypeSystem.xml"/>
+    </imports>
+</typeSystemDescription>

@@ -1,0 +1,7 @@
+PACKAGE uima.ruta.training;
+
+TYPESYSTEM TrialsTypeSystem;
+
+"ORR" "was" (NUM "%"){-> ORR};
+
+DECLARE Peter;

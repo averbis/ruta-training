@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+    <name>uima.ruta.training.Unit1_Exercise5TypeSystem</name>
+    <imports>
+        <import location="../../../BasicTypeSystem.xml"/>
+    </imports>
+    <types>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise5.Animal</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise5</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise5.Sentence</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise5</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise5.A2</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise5</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise5.A1</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise5</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise5.A4</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise5</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise5.A3</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise5</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise5.Employee</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise5</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise5.EmplRelation</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise5</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+            <features>
+                <featureDescription>
+                    <name>employee</name>
+                    <description>employee</description>
+                    <rangeTypeName>uima.tcas.Annotation</rangeTypeName>
+                </featureDescription>
+                <featureDescription>
+                    <name>employer</name>
+                    <description>employer</description>
+                    <rangeTypeName>uima.tcas.Annotation</rangeTypeName>
+                </featureDescription>
+            </features>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise5.Employer</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise5</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise5.MoneyAmount</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise5</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+            <features>
+                <featureDescription>
+                    <name>amount</name>
+                    <description>amount</description>
+                    <rangeTypeName>uima.cas.Integer</rangeTypeName>
+                </featureDescription>
+                <featureDescription>
+                    <name>currency</name>
+                    <description>currency</description>
+                    <rangeTypeName>uima.cas.String</rangeTypeName>
+                </featureDescription>
+            </features>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise5.A5</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise5</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+    </types>
+</typeSystemDescription>

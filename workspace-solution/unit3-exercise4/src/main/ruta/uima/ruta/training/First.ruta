@@ -1,0 +1,5 @@
+PACKAGE uima.ruta.training;
+
+SCRIPT uima.ruta.training.Second;
+
+CALL(Second);

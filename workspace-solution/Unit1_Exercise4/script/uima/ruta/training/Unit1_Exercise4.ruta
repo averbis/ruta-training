@@ -1,0 +1,45 @@
+PACKAGE uima.ruta.training;
+
+DECLARE Animal;
+WORDLIST AnimalList = 'animals.txt';
+MARKFAST(Animal, AnimalList, true);
+
+DECLARE Employer, Employee;
+"Peter"-> Employee;
+"Frank"-> Employer;
+
+DECLARE EmplRelation (Annotation employee, Annotation employer);
+
+(a:Employee # b:Employer)
+    {-> EmplRelation, EmplRelation.employee = a,  EmplRelation.employer = b};
+
+DECLARE Sentence;
+((# PERIOD){-> Sentence})+;
+
+DECLARE MoneyAmount (INT amount, STRING currency);
+INT am;
+STRING cu;
+NUM{PARSE(am)} SPECIAL
+    {-> MATCHEDTEXT(cu), CREATE(MoneyAmount, 1, 2, "amount" = am, "currency" = cu)};
+
+    
+DECLARE S1, S2, S3;
+
+Sentence{OR(CONTAINS(NUM),CONTAINS(COMMA))-> S1};
+Sentence{CONTAINS(CW, 2, 1000)-> S2};
+Sentence{STARTSWITH(Animal)-> S3};
+
+Sentence{CONTAINS(Animal) -> UNMARK(Sentence)};
+MoneyAmount.amount<50{-> UNMARK(MoneyAmount)};
+MoneyAmount.currency=="$"{-> UNMARK(MoneyAmount)};
+
+# EmplRelation{-> SHIFT(EmplRelation, 1, 3)} #;
+
+Sentence{-> TRIM(PM)};
+
+DECLARE ToBeSplit;
+"are" -> ToBeSplit;
+Sentence{-> SPLIT(ToBeSplit)};
+
+
+

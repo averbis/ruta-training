@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+    <name>uima.ruta.training.Unit2_Exercise2TypeSystem</name>
+    <imports>
+        <import location="../../../BasicTypeSystem.xml"/>
+    </imports>
+    <types>
+        <typeDescription>
+            <name>uima.ruta.training.Unit2_Exercise2.Conj</name>
+            <description>Type defined in uima.ruta.training.Unit2_Exercise2</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit2_Exercise2.Chunk</name>
+            <description>Type defined in uima.ruta.training.Unit2_Exercise2</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit2_Exercise2.Enumeration</name>
+            <description>Type defined in uima.ruta.training.Unit2_Exercise2</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+            <features>
+                <featureDescription>
+                    <name>elements</name>
+                    <description>elements</description>
+                    <rangeTypeName>uima.cas.FSArray</rangeTypeName>
+                </featureDescription>
+            </features>
+        </typeDescription>
+    </types>
+</typeSystemDescription>

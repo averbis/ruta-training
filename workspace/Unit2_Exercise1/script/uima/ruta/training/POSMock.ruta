@@ -1,0 +1,9 @@
+PACKAGE uima.ruta.training;
+
+DECLARE DT, JJ, NN, V, IN, PRPS, PRP, CC, PUNCT;
+
+"The"{-> DT} "little"{-> JJ} "yellow"{-> JJ} "dog"{-> NN} "barked"{-> V} 
+    "at"{-> IN} "the"{-> DT} "cat"{-> NN} "."{-> PUNCT};
+    
+"My"{-> PRPS} "name"{-> NN} "is"{-> V} "Peter"{-> NN} 
+    "and"{-> CC} "I"{-> PRP} "live"{-> V} "in"{-> IN} "Freiburg"{-> NN} "."{-> PUNCT};

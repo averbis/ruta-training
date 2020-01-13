@@ -1,0 +1,24 @@
+PACKAGE uima.ruta.training;
+
+ENGINE utils.HtmlAnnotator;
+ENGINE utils.HtmlConverter;
+ENGINE utils.ViewWriter;
+TYPESYSTEM utils.HtmlTypeSystem;
+TYPESYSTEM utils.SourceDocumentInformation;
+
+Document{-> RETAINTYPE(SPACE,BREAK)};
+Document{-> EXEC(HtmlAnnotator)};
+
+DECLARE SystemOrganClassMention;
+"System organ class" -> SystemOrganClassMention;
+
+Document { -> CONFIGURE(HtmlConverter, "inputView" = "_InitialView", 
+    "outputView" = "plain"), 
+      EXEC(HtmlConverter)};
+
+Document{CONTAINS(SystemOrganClassMention) -> CONFIGURE(ViewWriter, "inputView" = "plain", 
+    "outputView" = "_InitialView", "output" = "/../converted1/")};
+Document{-CONTAINS(SystemOrganClassMention) -> CONFIGURE(ViewWriter, "inputView" = "plain", 
+    "outputView" = "_InitialView", "output" = "/../converted2/")};
+    
+EXEC(ViewWriter);

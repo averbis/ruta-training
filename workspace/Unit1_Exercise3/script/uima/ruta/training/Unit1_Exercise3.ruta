@@ -1,0 +1,5 @@
+PACKAGE uima.ruta.training;
+
+DECLARE Employer, Employee;
+"Peter"-> Employee;
+"Frank"-> Employer;

@@ -1,0 +1,6 @@
+PACKAGE uima.ruta.training;
+
+DECLARE Animal;
+WORDLIST AnimalList = 'animals.txt';
+MARKFAST(Animal, AnimalList, true);
+

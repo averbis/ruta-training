@@ -1,0 +1,10 @@
+PACKAGE uima.ruta.training;
+
+IMPORT PACKAGE * FROM Typesystem1 AS ts1;
+IMPORT PACKAGE * FROM Typesystem2 AS ts2;
+
+ANY ANY ANY NUM{-> MARK(ts1.Type, 1, 3)};
+PERIOD ANY+{-PARTOF({NUM,PERIOD})} NUM{-> MARK(ts2.Type, 1)};
+
+ANY ANY ANY @NUM{-> MARK(ts1.Type, 1, 3)};
+PERIOD # @NUM{-> MARK(ts2.Type, 1)};

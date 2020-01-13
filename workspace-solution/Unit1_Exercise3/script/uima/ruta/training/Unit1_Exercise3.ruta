@@ -1,0 +1,27 @@
+PACKAGE uima.ruta.training;
+
+DECLARE Employer, Employee;
+"Peter"-> Employee;
+"Frank"-> Employer;
+
+
+DECLARE EmplRelation (Annotation employee, Annotation employer);
+
+Document{-> CREATE(EmplRelation, "employee" = Employee, "employer" = Employer)};
+Employee # Employer{-> GATHER(EmplRelation, 1, 3, "employee" = 1, "employer" = 3)};
+(Employee # Employer){-> EmplRelation, 
+    EmplRelation.employee = Employee, 
+    EmplRelation.employer = Employer};
+
+ANNOTATION e1,e2;
+(Employee{-> ASSIGN(e1, Employee)} # Employer{-> ASSIGN(e2, Employer)})
+    {-> CREATE(EmplRelation, "employee" = e1, "employer" = e2)};
+    
+(e1:Employee # e2:Employer)
+    {-> CREATE(EmplRelation, "employee" = e1, "employer" = e2)};
+    
+DECLARE MoneyAmount (INT amount, STRING currency);
+INT amount;
+STRING currency; 
+(NUM{PARSE(amount)} SPECIAL{-> MATCHEDTEXT(currency)})
+    {-> CREATE(MoneyAmount, "amount" = amount, "currency" = currency)};    

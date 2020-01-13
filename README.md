@@ -1,2 +1,5 @@
 # ruta-training
-Units and exercises for learning Apache UIMA Ruta
+Units and exercises for learning Apache UIMA Ruta.
+
+
+

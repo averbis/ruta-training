@@ -1,0 +1,42 @@
+PACKAGE uima.ruta.training;
+
+TYPESYSTEM utils.HtmlTypeSystem;
+ENGINE utils.HtmlAnnotator;
+
+EXEC(HtmlAnnotator, {TAG});
+RETAINTYPE(WS, MARKUP);
+TAG{-> TRIM(WS, MARKUP)};
+RETAINTYPE;
+
+DECLARE UndesirableEffect (Annotation class, Annotation effect, Annotation frequency);
+
+
+DECLARE FrequencyInd;
+WORDLIST FrequencyList = 'Frequencies.txt';
+MARKFAST(FrequencyInd, FrequencyList, true);
+FrequencyInd->{ANY FrequencyInd{-> UNMARK(FrequencyInd)};};
+
+
+DECLARE FirstRow, FirstColumn, FrequencyCell;
+TR{STARTSWITH(TABLE)-> FirstRow};
+TD{STARTSWITH(TR)-> FirstColumn};
+TD{CONTAINS(FrequencyInd)-> FrequencyCell};
+
+DECLARE Chunk;
+TD{-CONTAINS(FrequencyInd), -PARTOF(FirstColumn), -REGEXP("-") -> Chunk};
+Chunk{CONTAINS(COMMA)-> SPLIT(COMMA)};
+
+DECLARE Header;
+"System organ class"-> Header;
+
+ACTION UE(ANNOTATION class, ANNOTATION effect, ANNOTATION frequency) = CREATE(UndesirableEffect, "class"= class, "effect" = effect, "frequency" = frequency) ;
+
+c:TD{PARTOF(FirstColumn),-PARTOF(Header), -PARTOF(FrequencyCell)} # 
+    f:FrequencyCell # e:@Chunk{-PARTOF(UndesirableEffect) -> UE(c,e,f)};
+
+INT index;
+ANNOTATION fa, ca;
+f:FrequencyCell{PARTOF(FirstRow), CONTEXTCOUNT(TR,index-1,index-1) -> fa = f} # c:TD{PARTOF(FirstColumn), -PARTOF(FrequencyCell) ->  ca=c}
+    # @TD{CONTAINS(Chunk),-PARTOF(UndesirableEffect), CONTEXTCOUNT(TR,0,100,index)}
+    ->{e:@Chunk{-PARTOF(UndesirableEffect)-> UE(ca,e,fa)};};
+

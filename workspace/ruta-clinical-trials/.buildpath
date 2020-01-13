@@ -1,0 +1,24 @@
+<buildpath>
+  <buildpathentry path="src/main/ruta/" kind="src">
+    <attributes>
+      <attribute name="ruta" value="script"/>
+    </attributes>
+  </buildpathentry>
+  <buildpathentry path="target/generated-sources/ruta/descriptor/" kind="src">
+    <attributes>
+      <attribute name="ruta" value="descriptor"/>
+    </attributes>
+  </buildpathentry>
+  <buildpathentry path="src/main/resources/wordlists" kind="src">
+    <attributes>
+      <attribute name="ruta" value="resources"/>
+    </attributes>
+  </buildpathentry>
+  <buildpathentry path="org.eclipse.dltk.launching.INTERPRETER_CONTAINER" kind="con"/>
+  <buildpathentry path="RUTA_BUILD_VARS" kind="con">
+    <attributes>
+      <attribute name="typeSystemSuffix" value="RutaTypeSystem"/>
+      <attribute name="analysisEngineSuffix" value="RutaAE"/>
+    </attributes>
+  </buildpathentry>
+</buildpath>

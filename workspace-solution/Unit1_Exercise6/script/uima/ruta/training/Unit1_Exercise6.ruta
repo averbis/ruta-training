@@ -1,0 +1,25 @@
+PACKAGE uima.ruta.training;
+
+ENGINE utils.PlainTextAnnotator;
+TYPESYSTEM utils.PlainTextTypeSystem;
+
+EXEC(PlainTextAnnotator, {Line});
+
+DECLARE Sentence;
+
+//Line{-> Sentence};
+
+RETAINTYPE(WS);
+Line{-> Sentence};
+
+FILTERTYPE(CW);
+DECLARE S1;
+Sentence{-> S1};
+
+DECLARE NotVisible;
+"Frank" -> NotVisible;
+RETAINTYPE;
+FILTERTYPE(PERIOD,SW,NotVisible);
+
+DECLARE Type;
+(CW NUM SPECIAL){-> Type};

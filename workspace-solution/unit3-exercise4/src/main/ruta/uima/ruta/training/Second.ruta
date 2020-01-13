@@ -1,0 +1,6 @@
+PACKAGE uima.ruta.training;
+
+WORDLIST dict = 'generated.mtwl';
+
+DECLARE MyType;
+TRIE("FirstNames.txt"= MyType, dict, true, 4, false, 0, ".,-/");

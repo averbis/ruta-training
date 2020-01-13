@@ -1,0 +1,11 @@
+PACKAGE uima.ruta.training;
+
+DECLARE Animal;
+
+W.ct=="dog"{-> Animal};
+W{REGEXP("zander", true) -> Animal};
+
+WORDLIST AnimalList = 'Animals.txt';
+MARKFAST(Animal, AnimalList);
+
+"tuna" -> Animal;

@@ -1,0 +1,9 @@
+PACKAGE uima.ruta.training;
+
+SCRIPT uima.ruta.training.Unit1_Exercise5;
+
+WORDLIST AnimalList = 'animals.txt';
+MARKFAST(Animal, AnimalList, true);
+((# PERIOD){-> Sentence})+;
+
+Sentence{CONTAINS(Animal)-> CALL(Unit1_Exercise5.eachSentence)};

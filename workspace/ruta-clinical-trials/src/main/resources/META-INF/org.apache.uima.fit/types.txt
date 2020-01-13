@@ -1,0 +1,2 @@
+classpath*:TrialsTypeSystem.xml
+classpath*:uima/ruta/training/ClinicalTrialsRutaTypeSystem.xml

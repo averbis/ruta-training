@@ -1,0 +1,6 @@
+PACKAGE uima.ruta.training;
+
+ENGINE utils.PlainTextAnnotator;
+TYPESYSTEM utils.PlainTextTypeSystem;
+
+EXEC(PlainTextAnnotator, {Line});

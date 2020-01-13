@@ -1,0 +1,10 @@
+PACKAGE uima.ruta.training;
+
+SCRIPT uima.ruta.training.POSMock;
+CALL(POSMock);
+
+DECLARE ChunkNP, ChunkVP, ChunkPP;
+ ((DT | PRPS)? JJ* @NN){-> ChunkNP};
+ PRP{-> ChunkNP};
+ V{-> ChunkVP};
+ (IN ChunkNP){-> ChunkPP};

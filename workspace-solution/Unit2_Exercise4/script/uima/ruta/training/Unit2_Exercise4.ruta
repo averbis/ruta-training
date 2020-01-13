@@ -1,0 +1,132 @@
+PACKAGE uima.ruta.training;
+
+WORDTABLE NumberTable = 'Numbers.csv';
+WORDTABLE MultiplicatorTable = 'Multiplicators.csv';
+WORDTABLE SpecialChararactorFractionTable = 'SpecialCharacterFractions.csv';
+WORDTABLE SpecialCharacterTable = 'SpecialCharacters.csv';
+WORDTABLE ExponentTable = 'Exponents.csv';
+
+DECLARE NumericValue (DOUBLE value);
+DECLARE Fraction(NumericValue numerator, NumericValue denominator);
+DECLARE SimpleFraction(INT numerator, INT denominator);
+
+DECLARE ConjunctionWord;
+DECLARE NormNum (DOUBLE value);
+DECLARE NormNum NumInd, MultiplicatorInd, ExponentInd;
+
+BOOLEAN allowPeriodDecimalSeparator = true;
+STRING decimalSeparatorString = "\\.";
+STRING thousandsSeparatorString = ",";
+STRING language = "en";
+
+DECLARE LanguageContainer (STRING language);
+Document{IS(DocumentAnnotation)-> GETFEATURE("language", language)};
+LanguageContainer{-> GETFEATURE("language", language)};
+
+DECLARE DecimalSeparator, ThousandsSeparator;
+
+// TODO find a solution for the different languages
+BLOCK(default) Document{NOT(OR(FEATURE("language", "en"),FEATURE("language", "de"),FEATURE("language", "fr")))}{
+    "and|und|et" -> ConjunctionWord;
+}
+
+BLOCK(english) Document{FEATURE("language", "en")}{
+    // default
+     Document{-> ASSIGN(decimalSeparatorString, "\\."), ASSIGN(thousandsSeparatorString, ",")};
+    "and" -> ConjunctionWord;
+}
+BLOCK(german) Document{FEATURE("language", "de")}{
+    Document{-> ASSIGN(decimalSeparatorString, ","), ASSIGN(thousandsSeparatorString, "\\.")};
+    "und" -> ConjunctionWord;
+}
+BLOCK(french) Document{FEATURE("language", "fr")}{
+    Document{-> ASSIGN(decimalSeparatorString, ","), ASSIGN(thousandsSeparatorString, "\\.")};
+    "et" -> ConjunctionWord;
+}
+
+
+// TODO this block can be removed and integrated in the following rules
+BLOCK(PM) PM {} {
+    Document{REGEXP(decimalSeparatorString) -> DecimalSeparator};
+    Document{REGEXP(thousandsSeparatorString) -> ThousandsSeparator};
+}
+
+
+Document{->MARKTABLE(NumericValue, 2, NumberTable, true, 2, "", 2, "value" = 1)};
+Document{->MARKTABLE(MultiplicatorInd, 2, MultiplicatorTable, true, 4, "", 2, "value" = 1)};
+Document{->MARKTABLE(SimpleFraction, 3, SpecialChararactorFractionTable, true, 4, "", 2, "numerator" = 1, "denominator" = 2)};
+Document{->MARKTABLE(NumericValue, 2, SpecialCharacterTable, true, 4, "", 2,  "value" = 1)};
+Document{->MARKTABLE(ExponentInd, 2, ExponentTable, true, 4, "", 2,  "value" = 1)};
+
+
+ConjunctionWord{PARTOF(MultiplicatorInd)-> UNMARK(ConjunctionWord)};
+
+DOUBLE value;
+
+
+// normal numbers like 1,000.95
+RETAINTYPE(WS);
+(NUM{-PARTOF(NumericValue)} (ThousandsSeparator NUM{REGEXP("...")})* (DecimalSeparator NUM)?)
+    {PARSE(value, language) -> CREATE(NumericValue, "value" = value)};
+W{-REGEXP("[ex]", true)} @NumericValue{-> UNMARK(NumericValue)};
+RETAINTYPE;
+
+BLOCK(additionalPeriodSep) Document{IF(allowPeriodDecimalSeparator)} {
+    (NUM{IS(NumericValue)-> UNMARK(NumericValue)} PERIOD NUM{IS(NumericValue)-> UNMARK(NumericValue)})
+        {PARSE(value, "en") -> CREATE(NumericValue, "value" = value)};
+}
+
+
+// fractions like 3/4
+NumericValue{-> UNMARK(NumericValue)} SPECIAL{REGEXP("/")} NumericValue{-> UNMARK(NumericValue), 
+    GATHER(Fraction,1,3, "numerator" = 1, "denominator" = 3)};
+
+Fraction{-> CREATE(NumericValue, "value" = (Fraction.numerator.value / Fraction.denominator.value))};
+SimpleFraction{-> CREATE(NumericValue, "value" = (SimpleFraction.numerator / SimpleFraction.denominator))};
+
+
+// exponents like 2^3, 2.3e13, 4²
+(NumericValue{-> ASSIGN(value, NumericValue.value), UNMARK(NumericValue)} 
+    ExponentInd{-> ASSIGN(value, (POW(value, ExponentInd.value)))})
+    {-> CREATE(NumericValue, "value" = value)};
+
+(NumericValue{-> ASSIGN(value, NumericValue.value), UNMARK(NumericValue)} 
+    SPECIAL{REGEXP("\\^")}
+    NumericValue{-> ASSIGN(value, (POW(value, NumericValue.value))), UNMARK(NumericValue)})
+    {-> CREATE(NumericValue, "value" = value)};
+
+(NumericValue{-> ASSIGN(value, NumericValue.value), UNMARK(NumericValue)} 
+    W{REGEXP("e", true)}
+    NumericValue{-> ASSIGN(value, value * (POW(10, NumericValue.value))), UNMARK(NumericValue)})
+    {-> CREATE(NumericValue, "value" = value)};
+
+// multiplication like 3x4, 2*2
+
+(NumericValue{-> ASSIGN(value, NumericValue.value), UNMARK(NumericValue)} 
+    ANY{REGEXP("x|\\*", true)}
+    NumericValue{-> ASSIGN(value, (value * NumericValue.value)), UNMARK(NumericValue)})
+    {-> CREATE(NumericValue, "value" = value)};
+
+
+// combination with multipliers like 3 million
+(NumericValue{-> ASSIGN(value, NumericValue.value), UNMARK(NumericValue)} 
+    SPECIAL?{REGEXP("-"), NEAR(W,0,1,true)}
+   NumericValue?{-> ASSIGN(value, value + NumericValue.value), UNMARK(NumericValue)}
+   (
+       MultiplicatorInd{-> ASSIGN(value, value * (POW(10, MultiplicatorInd.value)))} 
+       NumericValue?{-> ASSIGN(value, value + NumericValue.value), UNMARK(NumericValue)}
+   )*
+
+   ){-> CREATE(NumericValue, "value" = value)};
+
+// fünfundzwanzig
+(NumericValue{PARTOF(W)-> ASSIGN(value, NumericValue.value), UNMARK(NumericValue)} 
+    @ConjunctionWord NumericValue.value != 0{PARTOF(W),IF((NumericValue.value%1) == 0)
+       -> ASSIGN(value, value + NumericValue.value), UNMARK(NumericValue)})
+       {-> CREATE(NumericValue, "value" = value)};
+
+// hotfix to remove missed inlined values
+NumericValue -> { Annotation NumericValue{-> UNMARK(NumericValue)};};
+RETAINTYPE(WS);
+W SPECIAL?{-REGEXP("[=]")} @NumericValue{-> UNMARK(NumericValue)};
+RETAINTYPE;

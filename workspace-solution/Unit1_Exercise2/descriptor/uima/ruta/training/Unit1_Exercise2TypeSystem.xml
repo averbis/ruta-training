@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+    <name>uima.ruta.training.Unit1_Exercise2TypeSystem</name>
+    <imports>
+        <import location="../../../BasicTypeSystem.xml"/>
+    </imports>
+    <types>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise2.Year</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise2</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise2.Date</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise2</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise2.Day</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise2</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise2.AnimalEnum</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise2</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise2.Month</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise2</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise2.Animal</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise2</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit1_Exercise2.Sentence</name>
+            <description>Type defined in uima.ruta.training.Unit1_Exercise2</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+    </types>
+</typeSystemDescription>

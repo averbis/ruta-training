@@ -1,0 +1,12 @@
+PACKAGE uima.ruta.training;
+
+TYPESYSTEM utils.HtmlTypeSystem;
+ENGINE utils.HtmlAnnotator;
+
+EXEC(HtmlAnnotator, {TAG});
+RETAINTYPE(WS, MARKUP);
+TAG{-> TRIM(WS, MARKUP)};
+RETAINTYPE;
+
+
+

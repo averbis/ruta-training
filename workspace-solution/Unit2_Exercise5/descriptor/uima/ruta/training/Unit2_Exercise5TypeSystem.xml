@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+    <name>uima.ruta.training.Unit2_Exercise5TypeSystem</name>
+    <imports>
+        <import location="../../../BasicTypeSystem.xml"/>
+        <import location="../../../utils/HtmlTypeSystem.xml"/>
+    </imports>
+    <types>
+        <typeDescription>
+            <name>uima.ruta.training.Unit2_Exercise5.FirstColumn</name>
+            <description>Type defined in uima.ruta.training.Unit2_Exercise5</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit2_Exercise5.Header</name>
+            <description>Type defined in uima.ruta.training.Unit2_Exercise5</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit2_Exercise5.FrequencyCell</name>
+            <description>Type defined in uima.ruta.training.Unit2_Exercise5</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit2_Exercise5.Chunk</name>
+            <description>Type defined in uima.ruta.training.Unit2_Exercise5</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit2_Exercise5.UndesirableEffect</name>
+            <description>Type defined in uima.ruta.training.Unit2_Exercise5</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+            <features>
+                <featureDescription>
+                    <name>class</name>
+                    <description>class</description>
+                    <rangeTypeName>uima.tcas.Annotation</rangeTypeName>
+                </featureDescription>
+                <featureDescription>
+                    <name>effect</name>
+                    <description>effect</description>
+                    <rangeTypeName>uima.tcas.Annotation</rangeTypeName>
+                </featureDescription>
+                <featureDescription>
+                    <name>frequency</name>
+                    <description>frequency</description>
+                    <rangeTypeName>uima.tcas.Annotation</rangeTypeName>
+                </featureDescription>
+            </features>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit2_Exercise5.FrequencyInd</name>
+            <description>Type defined in uima.ruta.training.Unit2_Exercise5</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+        <typeDescription>
+            <name>uima.ruta.training.Unit2_Exercise5.FirstRow</name>
+            <description>Type defined in uima.ruta.training.Unit2_Exercise5</description>
+            <supertypeName>uima.tcas.Annotation</supertypeName>
+        </typeDescription>
+    </types>
+</typeSystemDescription>
