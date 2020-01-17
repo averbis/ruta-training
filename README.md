@@ -6,5 +6,7 @@ Prerequisites
 - Download and install Eclipse 
 - Install UIMA Ruta Workbench
 - Start Eclipse using "workspace" folder
+- Import all projects by "File -> Import -> General -> Import existing projects into workspace"
+- Select the "workspace" folder and tick the box "Search for nested projects".
 
 It must be pointed out that while the source code itself may be licensed under the ASL, individual projects might make use of third-party libraries or products that are not licensed under the ASL. The projects may also contain text files licensed under different licenses. Please be aware of the third party licenses and respect them.
